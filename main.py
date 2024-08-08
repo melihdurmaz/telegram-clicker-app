@@ -42,7 +42,7 @@ def update_points(telegramid: int, points: int, clickpower: int, bar: int):
     return {"message": "Points updated successfully"}
 
 async def start_fastapi():
-    config = uvicorn.Config(app, port=8000, reload=True)
+    config = uvicorn.Config(app, port=0000, reload=True)
     server = uvicorn.Server(config)
     await server.serve()
 
@@ -53,5 +53,6 @@ async def main():
     )
 
 if __name__ == "__main__":
+    import nest_asyncio
     nest_asyncio.apply()
     asyncio.run(main())
