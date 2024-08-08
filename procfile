@@ -1,1 +1,2 @@
+pip install .\requirements.txt
 web: bash .eb-web.sh
