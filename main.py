@@ -1,3 +1,4 @@
+import os
 import uvicorn
 from fastapi import FastAPI, HTTPException
 from service import get_user_points, update_user_points,start_telegram_bot
@@ -13,7 +14,7 @@ app.add_middleware(
     allow_methods=["*"],  # Tüm HTTP yöntemlerine izin vermek için
     allow_headers=["*"],  # Tüm başlıklara izin vermek için
 )
-
+port=os.environ.get("PORT",5000)
 
 @app.get("/")
 async def test():
@@ -34,4 +35,4 @@ def update_points(telegramid: int, points: int, clickpower: int, bar: int):
 
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", port=8000, reload=True)
+    uvicorn.run("main:app", host="0.0.0.0",port=port, reload=True)
