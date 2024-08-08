@@ -1,8 +1,5 @@
-import asyncio
-import nest_asyncio
 import uvicorn
 from fastapi import FastAPI, HTTPException
-from telegram.ext import Application, CommandHandler
 from service import get_user_points, update_user_points,start_telegram_bot
 from fastapi.middleware.cors import CORSMiddleware
 
