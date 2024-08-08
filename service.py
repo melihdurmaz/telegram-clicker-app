@@ -3,15 +3,9 @@ import hashlib
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.ext import ContextTypes
 import mysql.connector
-from config import API_TOKEN
+from config import API_TOKEN,configg
 
-config = {
-    'user': 'root',
-    'password': '05416919873Md.',  # Root kullanıcısı şifrenizi buraya ekleyin
-    'host': '35.234.67.94',
-    'database': 'telegramdb',  # Veritabanı adınızı buraya ekleyin
-    'port': 3306  # Varsayılan MySQL/MariaDB portu
-}
+config = configg
 connection = None
 
 def hash_combined_values(user_id: str, secret_key: str) -> str:
