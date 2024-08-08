@@ -1,7 +1,7 @@
 import datetime
 import hashlib
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
-from telegram.ext import ContextTypes
+from telegram.ext import Application, CommandHandler,ContextTypes
 import mysql.connector
 from config import API_TOKEN,configg
 
@@ -12,6 +12,15 @@ def hash_combined_values(user_id: str, secret_key: str) -> str:
     """Kullanıcı ID'si ve gizli anahtarı birleştirip hashler."""
     combined_string = f"{user_id}:{secret_key}"
     return hashlib.sha256(combined_string.encode()).hexdigest()
+
+async def start_telegram_bot() -> None:
+    application = Application.builder().token(API_TOKEN).build()
+    start_handler = CommandHandler('start', start)
+    application.add_handler(start_handler)
+    await application.initialize()
+    await application.start()
+    await application.updater.start_polling()
+
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     try:
